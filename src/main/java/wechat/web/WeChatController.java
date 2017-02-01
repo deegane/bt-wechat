@@ -1,6 +1,7 @@
 package wechat.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.ReflectionUtils;
 import org.springframework.web.bind.annotation.*;
 import wechat.domain.Profile;
 import wechat.domain.TextMessage;
@@ -37,6 +38,8 @@ public class WeChatController {
 
             Profile profile = util.getProfile(from.fromUserName);
 
+            System.out.println(profile.toString());
+
             TextMessage to = this.toMsg(from, profile);
             return util.convertToXml(to);
 
@@ -60,12 +63,13 @@ public class WeChatController {
                 to.content = "Hello " + profile.getNickname()
                         + ".\nI retrieved your profile from your OpenID:" + from.fromUserName
                         + ".\n"
-                        + "\nPlease click www.brandtone.ie for more information";
+                        + "\nYou can receive a reward if you provide some details on our website"
+                        + "\n\nwww.brandtone.com/demos/cimc/entry.html";
             } else {
                 to.content = "Error retrieving your information";
             }
         } else if (from.msgType.equals("text")) {
-            to.content="Please click www.brandtone.ie for more information";
+            to.content="For more information please click www.brandtone.com/demos/cimc/entry.html";
         }
 
         to.msgId = from.msgId;

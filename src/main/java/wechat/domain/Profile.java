@@ -1,6 +1,7 @@
 package wechat.domain;
 
 import com.fasterxml.jackson.annotation.*;
+import com.google.common.base.MoreObjects;
 
 import javax.annotation.Generated;
 import java.util.ArrayList;
@@ -306,7 +307,10 @@ public List<Object> getTagidList() {
 return tagidList;
 }
 
-/**
+
+
+
+    /**
 * 
 * @param tagidList
 * The tagid_list
@@ -325,5 +329,26 @@ return this.additionalProperties;
 public void setAdditionalProperty(String name, Object value) {
 this.additionalProperties.put(name, value);
 }
+
+
+    @Override
+    public String toString() {
+        return MoreObjects.toStringHelper(this)
+                .add("subscribe", subscribe)
+                .add("openid", openid)
+                .add("nickname", nickname)
+                .add("sex", sex)
+                .add("language", language)
+                .add("city", city)
+                .add("province", province)
+                .add("country", country)
+                .add("headimgurl", headimgurl)
+                .add("subscribeTime", subscribeTime)
+                .add("remark", remark)
+                .add("groupid", groupid)
+                .add("tagidList", tagidList)
+                .add("additionalProperties", additionalProperties)
+                .toString();
+    }
 
 }
